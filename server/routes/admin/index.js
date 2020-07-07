@@ -16,6 +16,13 @@ module.exports=app=>{
         res.send(model)
 
     })
+    router.get('/categories',async(req,res)=>{
+        //接受items，限制数量为10条
+        const items = await Category.find().limit(10)
+        //将items发送给客户端(前端)
+        res.send(items)
+
+    })
     //将子路由挂载上去
     app.use('/admin/api',router)
 

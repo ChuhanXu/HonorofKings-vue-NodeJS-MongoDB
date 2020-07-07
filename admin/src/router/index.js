@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 //import Home from '../views/Home.vue'
 import Main from '../views/Main.vue'
 import CategoryEdit from '../views/CategoryEdit.vue'
+import CategoryList from '../views/CategoryList.vue'
 
 Vue.use(VueRouter)
 
@@ -13,7 +14,8 @@ Vue.use(VueRouter)
     component: Main,
     // 添加了一个子路由
     children:[
-      {path:'/categories/create',component:CategoryEdit}
+      {path:'/categories/create',component:CategoryEdit},
+      {path:'/categories/list',component:CategoryList}
     ]
   },
   

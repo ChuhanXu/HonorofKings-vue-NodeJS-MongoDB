@@ -9,6 +9,9 @@ app.use(require('cors')())
 //中间件,用来从客户端拿数据,json是前后端交互的基本数据格式
 app.use(express.json())
 
+//定义一个静态路由，表示uploads下的文件都是静态文件,托管静态文件，实现uploads里的所有文件可以通过uploads来访问
+app.use('/uploads',express.static(__dirname+'/uploads'))
+
 //引用我们的路由，引用过来是一个函数,把app传给它，这样在admin里面就有一个app可以用
 require('./routes/admin')(app)
 

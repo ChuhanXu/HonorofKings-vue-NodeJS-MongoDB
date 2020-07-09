@@ -16,5 +16,8 @@
 1. 在Category list中新建按钮delete
 2. 在IU element 里找确认对话框元素当作确认删除，前端
 3. 写 delete 接口
+### 4. 子分类
+1. 
+### CRUD 接口（保证接口的通用性和扩展性）
 
 

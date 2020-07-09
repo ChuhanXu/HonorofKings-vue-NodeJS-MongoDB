@@ -1,7 +1,7 @@
 <template>
     <div class="about">
       <!-- 使用一个三目运算符，如果有ID就是编辑分类，不然就是新建分类 -->
-        <h1>{{id?'编辑':'新建'}}物品</h1>
+        <h1>{{id?'编辑':'新建'}}英雄</h1>
         <el-form label-width="120px" @submit.native.prevent="save">
 
             <el-form-item label ="名称">   
@@ -16,14 +16,14 @@
                 <!-- on-success 上传成功之后要做什么 将返回值里的图片地址赋值给model.icon afterUpload一个方法  -->
                 <!-- action前加:表示动态绑定 -->
                 <!-- baseURL:'http://localhost:3000/admin/api'用不了，需要在后端写一个upload的接口 -->
-            <el-form-item label ="图标">
+            <el-form-item label ="头像">
                <el-upload
                 class="avatar-uploader"
                 :action="$http.defaults.baseURL+'/upload'"
                 :show-file-list="false"
                 :on-success="afterUpload"
                 >
-                <img v-if="model.icon" :src="model.icon" class="avatar"><!--图片  -->
+                <img v-if="model.avatar" :src="model.avatar" class="avatar"><!--图片  -->
                 <i v-else class="el-icon-plus avatar-uploader-icon"></i> <!-- 上传图标 -->
                 </el-upload>
             </el-form-item>
@@ -48,29 +48,32 @@
 
         data(){
             return{
-                model:{}
+                model:{
+                    //name:{},
+                    //avatar:{}
+                }
             }
         },
 
     methods:{
 
         afterUpload(res){
-            this.$set(this.model,'icon',res.url)//set 在model上加一个icon属性，赋值为res.url
-           //this.model.icon=res.url
+            this.$set(this.model,'avatar',res.url)//set 在model上加一个icon属性，赋值为res.url
+           //this.model.avatar=res.url
         },
 
         
         async save(){
            let res
             if(this.id){
-                res = await this.$http.put(`rest/items/${this.id}`,this.model)
+                res = await this.$http.put(`rest/heroes/${this.id}`,this.model)
             }else{
                 //rest后面的都可以找到，相当于一个resources
-                res = await this.$http.post('rest/items',this.model)
+                res = await this.$http.post('rest/heroes',this.model)
            }
 
            console.log(res)
-           this.$router.push('/items/list')
+           this.$router.push('/heroes/list')
           
            this.$message({
                type:'success',
@@ -79,7 +82,7 @@
         },
 
        async fetch(){
-            const res = await this.$http.get(`rest/items/${this.id}`)
+            const res = await this.$http.get(`rest/heroes/${this.id}`)
             this.model = res.data
         }
     },

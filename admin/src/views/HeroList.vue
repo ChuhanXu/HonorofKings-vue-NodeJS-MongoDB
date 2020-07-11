@@ -1,12 +1,16 @@
 <template>
   <div>
-    <h1>物品列表</h1>
+    <h1>英雄列表</h1>
       <el-table :data="items">
         <!-- items是给表格提供的数据 -->
         <!-- prop是字段 -->
         <el-table-column prop="_id" label="ID" width="300"></el-table-column>
         
         <el-table-column prop="name" label="英雄名称" ></el-table-column>
+
+        <!-- <el-table-column prop="categories" label="类型" ></el-table-column> -->
+
+        <el-table-column prop="title" label="英雄称号" ></el-table-column>
 
         <el-table-column prop="avatar" label="头像" >
           <template slot-scope="scope">

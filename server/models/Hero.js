@@ -16,7 +16,7 @@ const schema = new mongoose.Schema({
         attack:{type: Number},//攻击
         survive:{type: Number},//生存
     },
-
+    //skills数据结构是又多个对象构成一个数组，数组里有四个属性
     skills:[{
         icon:{type:String},
         name:{type:String},

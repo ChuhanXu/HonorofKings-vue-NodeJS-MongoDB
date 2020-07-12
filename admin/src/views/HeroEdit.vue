@@ -126,19 +126,28 @@
                                     class="avatar-uploader"
                                     :action="$http.defaults.baseURL+'/upload'"
                                     :show-file-list="false"
-                                    :on-success="afterUpload"
-                                >
+                                    :on-success="res => $set(item,'icon',res.url)">
+                                    <!-- 需要用vue里的set方法显示赋值 -->
+                                    <!-- 接受一个参数res，将接受到的参数的url赋值给item.icon -->
                                     <img v-if="item.icon" :src="item.icon" class="avatar"><!--图片  -->
                                     <i v-else class="el-icon-plus avatar-uploader-icon"></i> <!-- 上传图标 -->
                                 </el-upload>
                             </el-form-item>
 
                             <el-form-item label="描述">
-                                <el-input type="textarea" v-model="item.discription"></el-input>
+                                <el-input type="textarea" v-model="item.description"></el-input>
                             </el-form-item>
 
                             <el-form-item label="小提示">
                                 <el-input type="textarea" v-model="item.tips"></el-input>
+                            </el-form-item>
+
+
+                            <!--删除技能 用删除数据的方式  -->
+                            <!-- splice函数（删除的位置，删除数量）在i的位置删1个 -->
+                            <el-form-item >
+                                <el-button size="small" type="danger"
+                                @click="model.skills.splice(i,1)">Delete</el-button>
                             </el-form-item>
 
 
@@ -251,14 +260,14 @@
   .avatar-uploader-icon {
     font-size: 28px;
     color: #8c939d;
-    width: 178px;
-    height: 178px;
-    line-height: 178px;
+    width: 5rem;
+    height: 5rem;
+    line-height: 5rem;
     text-align: center;
   }
   .avatar {
-    width: 178px;
-    height: 178px;
+    width: 5rem;
+    height: 5rem;
     display: block;
   }
 </style>

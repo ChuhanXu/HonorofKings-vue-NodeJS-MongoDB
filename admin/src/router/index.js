@@ -14,6 +14,9 @@ import HeroList from '../views/HeroList.vue'
 import ArticleEdit from '../views/ArticleEdit.vue'
 import ArticleList from '../views/ArticleList.vue'
 
+import AdEdit from '../views/AdEdit.vue'
+import AdList from '../views/AdList.vue'
+
 Vue.use(VueRouter)
 
   const routes = [
@@ -45,7 +48,12 @@ Vue.use(VueRouter)
         //articles对应的地址和其对应的页面
         {path:'/articles/create',component:ArticleEdit},
         {path:'/articles/list',component:ArticleList},
-        {path:'/articles/edit/:id',component:ArticleEdit,props:true}
+        {path:'/articles/edit/:id',component:ArticleEdit,props:true},
+
+        //ads对应的地址和其对应的页面
+        {path:'/ads/create',component:AdEdit},
+        {path:'/ads/list',component:AdList},
+        {path:'/ads/edit/:id',component:AdEdit,props:true}
       ]
     },
   ]

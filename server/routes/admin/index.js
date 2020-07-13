@@ -80,4 +80,37 @@ module.exports=app=>{//导出一个函数，这个函数接受app对象，app对
 
     })
 
+    //1.通过前端将用户名和密码传上来
+    //2.在这里校验，看看是否匹配成功，然后返回给前端一个密钥，让它保存这段密钥
+    //通过这段密钥来证明自己是哪一个用户
+    app.post('/admin/api/login',async(req,res)=>{
+        //解构赋值
+        const{username,password}=req.body
+        //1.根据用户名找用户
+        const AdminUser = require('../../models/AdminUser')//引用模型
+        const user = await AdminUser.findOne({
+            username:username//第一个username是模型数据库里的username，第二个username是解构的变量
+            }).select('+password')//因为才开始密码设置的为false，无法获取，就无法完成校验，因此添加了('+password')
+        //判断，如果用户存在校验密码，如果不存在报错
+        if(!user){
+            return res.status(422).send({//442是一个状态码，不是正常的200
+                message:'用户不存在'
+            })
+
+        }
+    
+        //2.校验密码
+        const isValid = require('bcrypt').compareSync(password,user.password)//
+        if(!isValid){
+            return res.status(422).send({
+                message:'密码错误'
+            })
+        }
+        //3.返回token
+        const jwt = require('jsonwebtoken')
+        //生成一个token
+        const token = jwt.sign({id:user._id},app.get('secret'))//secret定义在全局中 index.js server
+        res.send({token})
+    })
+
 }

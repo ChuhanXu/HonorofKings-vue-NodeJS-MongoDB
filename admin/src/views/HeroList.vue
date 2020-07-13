@@ -46,7 +46,7 @@ export default {
       this.items=res.data
     },
     async remove(row){
-      this.$confirm(`Are you sure to delete the record?"${row.name}"`, 'Warning', {
+      this.$confirm(`Are you sure to delete the hero?"${row.name}"`, 'Warning', {
           confirmButtonText: 'OK',
           cancelButtonText: 'Cancel',
           type: 'warning'

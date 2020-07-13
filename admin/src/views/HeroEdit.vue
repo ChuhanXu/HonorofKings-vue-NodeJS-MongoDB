@@ -4,7 +4,7 @@
         <h1>{{id?'编辑':'新建'}}英雄</h1>
         <el-form label-width="120px" @submit.native.prevent="save">
             <!--默认值是skill，防止刷新后会跳转页面  -->
-            <el-tabs value="skills" type="border-card" >
+            <el-tabs value="basic" type="border-card" >
 
                 <el-tab-pane label="基本信息" name="basic">
 

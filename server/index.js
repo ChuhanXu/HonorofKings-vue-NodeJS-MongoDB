@@ -2,6 +2,8 @@ const express = require ("express")//引入express
 
 const app = express()//定义一个app 是express的一个实例
 //在3000端口启动同时传入一个回调函数，里面表示启动之后做什么
+//设置一个全局变量，防止用户篡改
+app.set('secret','nfrhnfhnrfhrnh')
 
 //把跨域模块也引用进来
 app.use(require('cors')())

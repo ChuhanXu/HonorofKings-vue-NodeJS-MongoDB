@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-//import Home from '../views/Home.vue'
+import Login from '../views/Login.vue'
 import Main from '../views/Main.vue'
 import CategoryEdit from '../views/CategoryEdit.vue'
 import CategoryList from '../views/CategoryList.vue'
@@ -17,13 +17,24 @@ import ArticleList from '../views/ArticleList.vue'
 import AdEdit from '../views/AdEdit.vue'
 import AdList from '../views/AdList.vue'
 
+import AdminUserEdit from '../views/AdminUserEdit.vue'
+import AdminUserList from '../views/AdminUserList.vue'
+
 Vue.use(VueRouter)
 
   const routes = [
+
+    {
+      path:'/login',
+      name:'login',
+      component:Login//Login 是一个方法
+
+
+    },
    {
       path: '/',
       name: 'main',
-      component: Main,
+      component: Main,//使用的是main形式
       // 添加了一个子路由
       children:[
       // 让两个不同的地址指向同一个页面组件CategoryEdit,加入一个特殊参数props，表示的是把 /categories/edit/:id 
@@ -53,7 +64,12 @@ Vue.use(VueRouter)
         //ads对应的地址和其对应的页面
         {path:'/ads/create',component:AdEdit},
         {path:'/ads/list',component:AdList},
-        {path:'/ads/edit/:id',component:AdEdit,props:true}
+        {path:'/ads/edit/:id',component:AdEdit,props:true},
+
+        //admin_users对应的地址和其对应的页面
+        {path:'/admin_users/create',component:AdminUserEdit},
+        {path:'/admin_users/list',component:AdminUserList},
+        {path:'/admin_users/edit/:id',component:AdminUserEdit,props:true}
       ]
     },
   ]

@@ -16,10 +16,12 @@
                 <!-- on-success 上传成功之后要做什么 将返回值里的图片地址赋值给model.icon afterUpload一个方法  -->
                 <!-- action前加:表示动态绑定 -->
                 <!-- baseURL:'http://localhost:3000/admin/api'用不了，需要在后端写一个upload的接口 -->
+                <!-- :headers="getAuthHeaders()"是一个定在Main里的方法,帮助得到Authorization -->
             <el-form-item label ="图标">
                <el-upload
                 class="avatar-uploader"
-                :action="$http.defaults.baseURL+'/upload'"
+                :action="uploadUrl"
+                :headers="getAuthHeaders()"
                 :show-file-list="false"
                 :on-success="afterUpload"
                 >

@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import VueRouter from 'vue-router'
+import Router from 'vue-router'
 import Login from '../views/Login.vue'
 import Main from '../views/Main.vue'
 import CategoryEdit from '../views/CategoryEdit.vue'
@@ -20,17 +20,20 @@ import AdList from '../views/AdList.vue'
 import AdminUserEdit from '../views/AdminUserEdit.vue'
 import AdminUserList from '../views/AdminUserList.vue'
 
-Vue.use(VueRouter)
+Vue.use(Router)
 
-  const routes = [
+ const router = new Router({
+
+  routes:[
 
     {
       path:'/login',
       name:'login',
-      component:Login//Login 是一个方法
-
-
+      component:Login,//Login 是一个方法
+      //除了这个登录页面，其余的都需要限制，login需要公开访问
+      meta:{isPublic:true}
     },
+
    {
       path: '/',
       name: 'main',
@@ -73,6 +76,16 @@ Vue.use(VueRouter)
       ]
     },
   ]
+  
+})
+//beforeEach()表示在每次进入这个路由之前需要做什么，to去哪个页面，from从哪个页面来
+//在login加了一个isPublic属性
 
-  const router = new VueRouter({routes})
-  export default router
+router.beforeEach((to,from,next) => {
+  //如果不是公开访问页面，并且没有token，他就无法进入页面，会停留在登陆页面
+  if(!to.meta.isPublic && !localStorage.token){
+    return next('/login')
+  }
+  next()
+})
+export default router

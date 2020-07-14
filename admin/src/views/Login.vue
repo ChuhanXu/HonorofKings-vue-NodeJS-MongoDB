@@ -33,7 +33,7 @@ export default {
   methods:{
     async login(){
      const res=await this.$http.post('login',this.model)//服务端返回得应该是一个token密钥,即使是同一个用户每次返回的token也不一样
-     //sessionStorage.token=res.data.token//关掉再回来会没有
+     //sessionStorage.token=res.data.token//关掉再回来会没有,在前端将token保存下来
      localStorage.token=res.data.token//关掉回来还会有
      this.$router.push('/')
      this.$message({

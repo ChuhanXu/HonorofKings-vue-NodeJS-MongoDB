@@ -1,171 +1,200 @@
 //reset scss和css的区别，可以嵌套着写
-*{
-    box-sizing:border-box;
-    outline:none;
+* {
+    box-sizing: border-box;
+    outline: none;
 }
-html{
-    font-size:13px;
+html {
+    font-size: 13px;
 }
-body{
-    margin:0;
-    font-family:Arial, Helvetica, sans-serif;
-    line-height:1.2em;//行距
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.2em; //行距
     background: #f1f1f1;
 }
-a{
-    color:#999;
+a {
+    color: #999;
 }
 
 //colors定义颜色，在scss中可以定义变量，在里面定义一些键值对，在后面可以直接用
 //list或map
 //这些scss类都会生成具体的css代码（助手工具类）
-$colors:(
-    "primary":#db9e2f,
-    "white":#fff,
-    "light":#f9f9f9,
-    "black":#000,
-    "dark":#222,
-    "dark1":#343440,
-    "grey":#999,
-
+$colors: (
+    "primary": #db9e2f,
+    "white": #fff,
+    "light": #f9f9f9,
+    "black": #000,
+    "dark": #222,
+    "dark1": #343440,
+    "grey": #999,
+    "grey-1": #666,
 );
-@each $colorKey,$color in $colors {
-    .text-#{$colorKey}{
-        color:$color;//color是css自带属性
+@each $colorKey, $color in $colors {
+    .text-#{$colorKey} {
+        color: $color; //color是css自带属性
     }
-    .bg-#{$colorKey}{
-        background-color:$color;//background-color是css自带属性
+    .bg-#{$colorKey} {
+        background-color: $color; //background-color是css自带属性
     }
-    
-    
 }
 //text居中 左对齐 右对齐
-@each $var in (left,center,right ) {
-    
-    .text-#{$var}{
-        text-align:$var;//text-align是css自带属性
+@each $var in (left, center, right) {
+    .text-#{$var} {
+        text-align: $var; //text-align是css自带属性
     }
-
-    
 }
 //font size
 //px 基本像素 rem相对像素，当px变大后 rem会自动调整，安装px to rem
 //alt+z可以实现自动换算 xs 极小,需要去设置一下，将base改为13
-$base-font-size:1rem;
-$font-sizes:(
-    xs:0.7692,//10px 没有rem只是一个倍数
-    sm: 0.9231,//12px
-    md:1,//基本字体大小
-    lg:1.0769,//15px
-    xl:1.2308//16px
-
-
+$base-font-size: 1rem;
+$font-sizes: (
+    xxs: 0.6154,
+    //8px
+        xs: 0.7692,
+    //10px 没有rem只是一个倍数
+        sm: 0.9231,
+    //12px
+        md: 1,
+    //基本字体大小
+        lg: 1.0769,
+    //15px
+        xl: 1.2308 //16px,
 );
 //用each去生成class
-@each $sizeKey,$size in $font-sizes{
-    .fs-#{$sizeKey}{
-        font-size:$size * $base-font-size;//font-size是css自带属性
+@each $sizeKey, $size in $font-sizes {
+    .fs-#{$sizeKey} {
+        font-size: $size * $base-font-size; //font-size是css自带属性
     }
-
 }
 
 
+//width,height
+.w-100{
+    width:100%;
+}
+.h-100{
+    height:100%;
 
+}
 
 //flex是一个基本的布局，兼容性很好，一定要有一个.display 类，是主轴和交叉轴的布局模式，这里在flex-column定义的是column
 //所以主轴flex-jc就是从上至下，flex-ai就是水平的
-.d-flex{
-    display:flex;
+.d-flex {
+    display: flex;
 }
 //主轴的对齐方式 justify content 向左向右 剧中 分散
 
-.flex-column{
-    flex-direction:column;//大多数时间是水平，偶尔会用到垂直方向
+.flex-column {
+    flex-direction: column; //大多数时间是水平，偶尔会用到垂直方向
 }
 
-$flex-jc:(
-    star:flex-start,
-    end:flex-end,
-    center:center,
-    between:space-between,
-    around:space-around,
-
+$flex-jc: (
+    star: flex-start,
+    end: flex-end,
+    center: center,
+    between: space-between,
+    around: space-around,
 );
 
-@each $key,$value in $flex-jc{
-    .jc-#{$key}{
-        justify-content : $value;//font-size是css自带属性
+@each $key, $value in $flex-jc {
+    .jc-#{$key} {
+        justify-content: $value; //font-size是css自带属性
     }
-
 }
 //交叉轴对齐方式
-$flex-ai:(
-    star:flex-start,
-    end:flex-end,
-    center:center,
-    strech:strech,//当你在水平方向有一个对齐方式要求交叉轴等高的时候使用
-
+$flex-ai: (
+    star: flex-start,
+    end: flex-end,
+    center: center,
+    strech: strech,
+    //当你在水平方向有一个对齐方式要求交叉轴等高的时候使用
 );
 
-@each $key,$value in $flex-ai{
-    .ai-#{$key}{
-        align-content : $value;//font-size是css自带属性
+@each $key, $value in $flex-ai {
+    .ai-#{$key} {
+        align-content: $value; //font-size是css自带属性
     }
-
 }
 //有的时候可能需要左边固定， 右边自动拉升
-.flex-1{
-    flex:1;
-
+.flex-1 {
+    flex: 1;
 }
-.flex-grow-1{
-    flex-grow:1;
-
+.flex-grow-1 {
+    flex-grow: 1;
 }
 //边距 spacing
 //0-5：0
 //bootstrap里定义.mt-1 m表示spacing-types:margin,t表示spacing-directions top，1表示spacing-sizes，pacing-base-size是一个基准
-$spacing-types:(m:margin,p:padding);
-$spacing-directions:(t:top,r:right,b:bottom,l:left);
+$spacing-types: (
+    m: margin,
+    p: padding,
+);
+$spacing-directions: (
+    t: top,
+    r: right,
+    b: bottom,
+    l: left,
+);
 $spacing-base-size: 1rem;
-$spacing-sizes:(0:0,1:0.25,2:0.5,3:1,4:1.5,5:3);
+$spacing-sizes: (
+    0: 0,
+    1: 0.25,
+    2: 0.5,
+    3: 1,
+    4: 1.5,
+    5: 3,
+);
 
-@each $typeKey,$type in $spacing-types{
+@each $typeKey, $type in $spacing-types {
     //如果不需要direction 例如.m-1
-    @each $sizeKey,$size in $spacing-sizes{
+    @each $sizeKey, $size in $spacing-sizes {
         //.m-1
-        #{$typeKey}-#{$sizeKey}{
-
+        .#{$typeKey}-#{$sizeKey} {
             #{$type}: $size * $spacing-base-size;
         }
     }
     //.mx-1 水平方向的margin
-    @each $sizeKey,$size in $spacing-sizes{
+    @each $sizeKey, $size in $spacing-sizes {
         //.mx-1
-        #{$typeKey}x-#{$sizeKey}{
-
+        .#{$typeKey}x-#{$sizeKey} {
             #{$type}-left: $size * $spacing-base-size;
             #{$type}-right: $size * $spacing-base-size;
         }
     }
 
     //.my-1 垂直方向的margin
-    @each $sizeKey,$size in $spacing-sizes{
+    @each $sizeKey, $size in $spacing-sizes {
         //.my-1
-        #{$typeKey}y-#{$sizeKey}{
-
+        .#{$typeKey}y-#{$sizeKey} {
             #{$type}-top: $size * $spacing-base-size;
             #{$type}-bottom: $size * $spacing-base-size;
         }
     }
-    @each $directionKey,$direction in $spacing-directions{
-        @each $sizeKey,$size in $spacing-sizes{
+    @each $directionKey, $direction in $spacing-directions {
+        @each $sizeKey, $size in $spacing-sizes {
             //.mt-1{margin-top:0.25rem}
-            #{$typeKey}#{$directionKey}-#{$sizeKey}{
-
+            .#{$typeKey}#{$directionKey}-#{$sizeKey} {
                 #{$type}-#{$direction}: $size * $spacing-base-size;
             }
         }
     }
+}
+//button
+.btn {
+    border: none;
+    border-radius: 0.1538rem;
+    font-size: map-get($font-sizes, "sm") * $base-font-size; //从之前定义的font-sizes中选择key得到value
+    padding: 0.2rem 0.6rem;
+}
 
+//导航
+.nav {
+    .nav-item {
+        border-bottom: 3px solid transparent;//加一个透明边框是为了对齐
+        padding-bottom: 0.1rem;
+// &表示上级本身
+        &.active {
+            border-bottom: 3px solid #fff;
+        }
+    }
 }

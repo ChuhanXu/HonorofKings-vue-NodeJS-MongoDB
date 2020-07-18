@@ -4,7 +4,16 @@ import App from './App.vue'
 Vue.config.productionTip = false
 
 import'./style.scss'
+import router from './router'
+
+
+// import VueAwesomeSwiper from 'vue-awesome-swiper'
+
+// Vue.use(VueAwesomeSwiper, /* { default options with global component } */)
+
 
 new Vue({
-  render: h => h(App),
+  router,
+  render: h => h(App)
 }).$mount('#app')
+

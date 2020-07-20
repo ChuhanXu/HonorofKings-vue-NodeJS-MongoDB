@@ -1,5 +1,5 @@
 //reset scss和css的区别，可以嵌套着写
-@import'./variable.scss';
+@import "./variable.scss";
 * {
     box-sizing: border-box;
     outline: none;
@@ -69,7 +69,6 @@ a {
     }
 }
 
-
 // //width,height
 // .w-100{
 //     width:100%;
@@ -89,8 +88,8 @@ a {
 .flex-column {
     flex-direction: column; //大多数时间是水平，偶尔会用到垂直方向
 }
-.flex-wrap{
-    flex-wrap: wrap
+.flex-wrap {
+    flex-wrap: wrap;
 }
 
 // $flex-jc: (
@@ -192,39 +191,50 @@ a {
     padding: 0.2rem 0.6rem;
 }
 
-//导航
+//导航支持两种，一种是正常的一种是反色的
 .nav {
+    display: flex;
     .nav-item {
-        border-bottom: 3px solid transparent;//加一个透明边框是为了对齐
+        border-bottom: 3px solid transparent; //加一个透明边框是为了对齐
         padding-bottom: 0.1rem;
-// &表示上级本身
+
+        // &表示上级本身
         &.active {
-            border-bottom: 3px solid #fff;
+            color: map-get($colors, "primary");
+            border-bottom-color: map-get($colors, "primary");
+        }
+    }
+    //白色的导航
+    &.nav-inverse {
+        .nav-item {
+            color: map-get($colors, "white");
+            &.active {
+                border-bottom-color: map-get($colors, "white");
+            }
         }
     }
 }
 
 //sprite
-.sprite{
-    background:url(../images/index.png) no-repeat 0 0;
+.sprite {
+    background: url(../images/index.png) no-repeat 0 0;
     background-size: 28.8462rem;
-    display:inline-block;
-    &.sprite-news{//用SpriteCow确定sprite方位
-        width:1.8077rem;
-        height:2.5rem;
-        background-position:72.904% 50.123% ;
+    display: inline-block;
+    &.sprite-news {
+        //用SpriteCow确定sprite方位
+        width: 1.8077rem;
+        height: 2.5rem;
+        background-position: 72.904% 50.123%;
     }
-    &.sprite-direction{//用SpriteCow确定sprite方位
-        width:2.2308rem;
-        height:2.2308rem;
-        background-position:10.408% 80.201% ;
+    &.sprite-direction {
+        //用SpriteCow确定sprite方位
+        width: 2.2308rem;
+        height: 2.2308rem;
+        background-position: 10.408% 80.201%;
     }
     // &.sprite-arrow{//用SpriteCow确定sprite方位
     //     width:2.3rem;
     //     height:2.3077rem;
     //     background-position:33.605% 18.182% ;
     // }
-
 }
-
-

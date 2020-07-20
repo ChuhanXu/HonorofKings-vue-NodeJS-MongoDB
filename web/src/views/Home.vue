@@ -29,6 +29,43 @@
         <span class="text-center">收起</span>
       </div>
     </div>
+    <!-- end of nav icons -->
+    <!-- 字体图标 -->
+    <!-- icon-cc-menu-circle 图标名称 -->
+    <!-- 可以当作字体来控制大小也可以变颜色 -->
+    <!-- 如果我们定义了一个组件并且再main.js中引用了它，就可以当作一个标签使用 -->
+
+    <m-card icon="cc-menu-circle" title="新闻资讯">
+      <div class="nav jc-between ">
+        <div class="nav-item active">
+          <div class="nav-link">热门</div>
+        </div>
+        <div class="nav-item">
+          <div class="nav-link">新闻</div>
+        </div>
+        <div class="nav-item">
+          <div class="nav-link">公告</div>
+        </div>
+        <div class="nav-item">
+          <div class="nav-link">活动</div>
+        </div>
+        <div class="nav-item">
+          <div class="nav-link">赛事</div>
+        </div>
+      </div>
+      <swiper>
+        <swiper-slide v-for="m in 5" :key="m">
+          <div class="text-left mt-3 py-2" v-for="n in 5" :key="n">
+            <span>[新闻]</span>
+            <span>|</span>
+            <span>夏日新版本</span>
+            <span>06/02</span>
+          </div>
+        </swiper-slide>
+      </swiper>
+    </m-card>
+
+    <div class="card p-3 bg-white mt-3"></div>
   </div>
 </template>
 
@@ -63,7 +100,7 @@ export default {
 
 //导航栏
 .nav-icons {
-  border-top:1px solid $border-color;
+  border-top: 1px solid $border-color;
   border-bottom: 1px solid $border-color;
   .nav-item {
     width: 25%; //一行四个
